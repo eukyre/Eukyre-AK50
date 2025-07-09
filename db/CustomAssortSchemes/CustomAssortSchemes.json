@@ -13,7 +13,7 @@
                         "FireMode": "single"
                     },
                     "UnlimitedCount": true,
-                    "StackObjectsCount": 1,
+                    "StackObjectsCount": 100,
                     "BuyRestrictionMax": 1
                 },
                 "parentId": "hideout",
@@ -60,7 +60,7 @@
                 "_tpl": "686e96247283228774e7875e",
                 "upd": {
                     "UnlimitedCount": true,
-                    "StackObjectsCount": 1,
+                    "StackObjectsCount": 100,
                     "BuyRestrictionMax": 3
                 },
                 "parentId": "hideout",
