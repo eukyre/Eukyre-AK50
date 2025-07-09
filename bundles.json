@@ -1,0 +1,113 @@
+{
+    "manifest": [
+        {
+            "key": "assets/content/items/mods/magazines/mag_m82_barrett_m82a1_127x99_10.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "assets/content/items/ammo/patrons/patron_127x99_hp.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "assets/content/items/ammo/patrons/patron_127x99_m21.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "assets/content/items/ammo/patrons/patron_127x99_m33.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "assets/content/items/ammo/patrons/patron_127x99_m903.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "assets/content/weapons/ak50/weapon_theakguy_ak50_127x99_container.bundle",
+            "dependencyKeys": [
+                "assets/commonassets/physics/physicsmaterials.bundle",
+                "assets/content/audio/blendoptions/assets.bundle",
+                "assets/content/audio/weapons/ak74.bundle",
+                "assets/content/audio/weapons/generic",
+                "assets/content/weapons/additional_hands/client_assets.bundle",
+                "assets/content/weapons/ak50/client_assets.bundle",
+                "assets/content/weapons/ak50/textures/client_assets.bundle",
+                "assets/content/weapons/animations/simple_animations.bundle",
+                "assets/content/weapons/animations/spirit_animations.bundle",
+                "assets/content/weapons/weapon_root_anim_fix.bundle",
+                "assets/content/weapons/wip/kibas tuning prefabs/muzzlejets_templates/default_assets.bundle",
+                "assets/systems/effects/heathaze/defaultheathaze.bundle",
+                "assets/systems/effects/muzzleflash/muzzleflash.bundle",
+                "assets/systems/effects/smoke.bundle",
+                "cubemaps",
+                "shaders"
+            ]
+        },
+        {
+            "key": "assets/content/weapons/ak50/textures/client_assets.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "assets/content/weapons/ak50/client_assets.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "ak50rip/barrel_ak50_theakguy_std_612mm_127x99.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "ak50rip/gas_block_ak50_theakguy_ak50_gastube_handguard_combo_mlok.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "ak50rip/muzzle_ak50_theakguy_ak50_muzzle_brake_127x99.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        },
+        {
+            "key": "ak50rip/reciever_ak50_theakguy_ak50_cover.bundle",
+            "dependencyKeys": [
+                "shaders",
+                "cubemaps",
+                "assets/commonassets/physics/physicsmaterials.bundle"
+            ]
+        }
+    ]
+}
