@@ -199,12 +199,12 @@
 		"weaponpresets": [
             {
                 "_changeWeaponName": false,
-                "_encyclopedia": "6868377c7bb1c07772467ee7",
+                "_encyclopedia": "686e9cc971fdf3a50ea5b9f3",
                 "_id": "686eb4bd95a86d9200b09426",
                 "_items": [
                     {
                         "_id": "686eb4b464543ed05a412202",
-                        "_tpl": "6868377c7bb1c07772467ee7",
+                        "_tpl": "686e9cc971fdf3a50ea5b9f3",
                         "upd": {
                             "Repairable": {
                                 "MaxDurability": 100,
