@@ -36,15 +36,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WTTInstanceManager = void 0;
 const path = __importStar(require("node:path"));
 const RouterService_1 = require("./RouterService");
-const QuestAPI_1 = require("./QuestAPI");
-const TraderAPI_1 = require("./TraderAPI");
 class WTTInstanceManager {
     //#region Accessible in or after preSptLoad
     modName;
     debug;
     // Useful Paths
-    modPath = path.join(process.cwd(), "\/user\/mods\/EpicRangeTime-Weapons\/");
-    dbPath = path.join(process.cwd(), "\/user\/mods\/EpicRangeTime-Weapons\/db");
+    modPath = path.join(process.cwd(), "\/user\/mods\/Eukyre-AK50\/");
+    dbPath = path.join(process.cwd(), "\/user\/mods\/Eukyre-AK50\/db");
     profilePath = path.join(process.cwd(), "\/user\/profiles");
     // Instances
     container;
@@ -70,8 +68,6 @@ class WTTInstanceManager {
     importerUtil;
     traderAssortService;
     applicationContext;
-    questApi = new QuestAPI_1.QuestAPI();
-    traderApi = new TraderAPI_1.TraderAPI();
     //#endregion
     // Call at the start of the mods postDBLoad method
     preSptLoad(container, mod) {
@@ -89,8 +85,6 @@ class WTTInstanceManager {
         this.staticRouter = container.resolve("StaticRouterModService");
         this.dynamicRouter = container.resolve("DynamicRouterModService");
         this.traderAssortService = container.resolve("TraderAssortService");
-        this.questApi.preSptLoad(this);
-        this.traderApi.preSptLoad(this);
         this.routerService.preSptLoad(this);
     }
     postDBLoad(container) {
@@ -101,8 +95,6 @@ class WTTInstanceManager {
         this.ragfairPriceService = container.resolve("RagfairPriceService");
         this.importerUtil = container.resolve("ImporterUtil");
         this.applicationContext = container.resolve("ApplicationContext");
-        this.traderApi.postDBLoad();
-        this.questApi.postDBLoad();
     }
 }
 exports.WTTInstanceManager = WTTInstanceManager;

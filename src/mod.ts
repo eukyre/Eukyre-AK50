@@ -12,22 +12,20 @@ import { IDatabaseTables } from "@spt/models/spt/server/IDatabaseTables";
 import { WTTInstanceManager } from "./WTTInstanceManager";
 import { CustomItemService } from "./CustomItemService";
 import { epicItemClass } from  "./EpicsEdits"
-import { TraderBadger } from "./Traders/TraderBadger";
 // Custom Trader Assort Items
 import { CustomAssortSchemeService } from "./CustomAssortSchemeService";
 import { CustomWeaponPresets } from "./CustomWeaponPresets";
 
-class TESTBED
+class Eukyre_AK50
 implements IPreSptLoadMod, IPostDBLoadMod
 {
     private Instance: WTTInstanceManager = new WTTInstanceManager();
     private version: string;
-    private modName = "Eukyre's AK-50";
+    private modName = "Eukyre's AK50";
     private config;
 
     private customItemService: CustomItemService = new CustomItemService();
     private epicItemClass: epicItemClass = new epicItemClass();
-    private traderBadger: TraderBadger = new TraderBadger();
     private customAssortSchemeService: CustomAssortSchemeService = new CustomAssortSchemeService();
     private customWeaponPresets: CustomWeaponPresets = new CustomWeaponPresets();
 
@@ -47,7 +45,6 @@ implements IPreSptLoadMod, IPostDBLoadMod
         this.customItemService.preSptLoad(this.Instance);
 
         this.epicItemClass.preSptLoad(this.Instance);
-        this.traderBadger.preSptLoad(this.Instance);
         this.customAssortSchemeService.preSptLoad(this.Instance);
 
         this.customWeaponPresets.preSptLoad(this.Instance);
@@ -62,7 +59,6 @@ implements IPreSptLoadMod, IPostDBLoadMod
         // EVERYTHING AFTER HERE MUST USE THE INSTANCE
 
         this.epicItemClass.postDBLoad();
-        await this.traderBadger.postDBLoad();
         this.customItemService.postDBLoad();
         this.customAssortSchemeService.postDBLoad();
         this.customWeaponPresets.postDBLoad();
@@ -117,8 +113,8 @@ implements IPreSptLoadMod, IPostDBLoadMod
     private displayCreditBanner(): void 
     {
         this.colorLog
-        (`[${this.modName}] Developers: probablyEukyre - Code Framework: GroovypenguinX - "AK-50 in 3.. 2.. 1..."`, "brightMagenta");
+        (`[${this.modName}] Developers:  probablyEukyre   Code Framework: GroovypenguinX - hehe ak fiddy.`, "brightMagenta");
     }
 }
 
-module.exports = { mod: new TESTBED() };
+module.exports = { mod: new Eukyre_AK50() };

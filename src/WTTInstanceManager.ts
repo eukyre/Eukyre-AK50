@@ -22,8 +22,6 @@ import type  { SaveServer } from "@spt/servers/SaveServer";
 import type  { ItemHelper } from "@spt/helpers/ItemHelper";
 import type  { ApplicationContext } from "@spt/context/ApplicationContext";
 import { WTTRouterService } from "./RouterService";
-import { QuestAPI } from "./QuestAPI";
-import { TraderAPI } from "./TraderAPI";
 
 export class WTTInstanceManager 
 {
@@ -31,8 +29,8 @@ export class WTTInstanceManager
     public modName: string;
     public debug: boolean;
     // Useful Paths
-    public modPath: string = path.join(process.cwd(), "\/user\/mods\/EpicRangeTime-Weapons\/");
-    public dbPath: string = path.join(process.cwd(), "\/user\/mods\/EpicRangeTime-Weapons\/db");
+    public modPath: string = path.join(process.cwd(), "\/user\/mods\/Eukyre-AK50\/");
+    public dbPath: string = path.join(process.cwd(), "\/user\/mods\/Eukyre-AK50\/db");
     public profilePath: string = path.join(process.cwd(), "\/user\/profiles");
 
     // Instances
@@ -60,8 +58,6 @@ export class WTTInstanceManager
     public importerUtil: ImporterUtil;
     public traderAssortService: TraderAssortService;
     public applicationContext: ApplicationContext;
-    public questApi: QuestAPI = new QuestAPI();
-    public traderApi: TraderAPI = new TraderAPI();
     //#endregion
 
     // Call at the start of the mods postDBLoad method
@@ -84,8 +80,6 @@ export class WTTInstanceManager
         this.traderAssortService = container.resolve<TraderAssortService>("TraderAssortService");
 
 
-        this.questApi.preSptLoad(this);
-        this.traderApi.preSptLoad(this);
         this.routerService.preSptLoad(this);
     }
 
@@ -98,9 +92,6 @@ export class WTTInstanceManager
         this.ragfairPriceService = container.resolve<RagfairPriceService>("RagfairPriceService");
         this.importerUtil = container.resolve<ImporterUtil>("ImporterUtil");
         this.applicationContext = container.resolve<ApplicationContext>("ApplicationContext");
-
-        this.traderApi.postDBLoad();
-        this.questApi.postDBLoad();
     }
 
 }

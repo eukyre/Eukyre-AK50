@@ -1,93 +1,86 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomItemService = void 0;
 const configConsts_1 = require("./references/configConsts");
+const configConsts_2 = require("./references/configConsts");
+const configConsts_3 = require("./references/configConsts");
 const items_1 = require("./references/items");
 const itemBaseClasses_1 = require("./references/itemBaseClasses");
 const itemHandbookCategories_1 = require("./references/itemHandbookCategories");
 const LogTextColor_1 = require("C:/snapshot/project/obj/models/spt/logging/LogTextColor");
-const fs = __importStar(require("node:fs"));
-const path = __importStar(require("node:path"));
-const QuestModifier_1 = require("./QuestModifier");
+const node_fs_1 = __importDefault(require("node:fs"));
+const node_path_1 = __importDefault(require("node:path"));
 class CustomItemService {
-    configs;
-    Instance;
-    questModifier;
-    constructor() {
-        this.configs = this.loadCombinedConfig();
-        this.questModifier = new QuestModifier_1.QuestModifier();
-    }
-    preSptLoad(Instance) {
-        this.Instance = Instance;
+    instanceManager;
+    preSptLoad(instanceManager) {
+        this.instanceManager = instanceManager;
     }
     postDBLoad() {
+        const configPath = node_path_1.default.join(__dirname, "../db/Items");
+        const configFiles = node_fs_1.default
+            .readdirSync(configPath)
+            .filter((file) => !file.includes("BaseItemReplacement"));
         let numItemsAdded = 0;
-        for (const itemId in this.configs) {
-            const itemConfig = this.configs[itemId];
-            const { exampleCloneItem, finalItemTplToClone } = this.createExampleCloneItem(itemConfig, itemId);
-            if (this.Instance.debug) {
-                console.log(`Item ID: ${itemId}`);
-                console.log(`Prefab Path: ${exampleCloneItem.overrideProperties?.Prefab.path}`);
+        for (const file of configFiles) {
+            const filePath = node_path_1.default.join(configPath, file);
+            try {
+                const fileContents = node_fs_1.default.readFileSync(filePath, "utf-8");
+                const config = JSON.parse(fileContents);
+                for (const itemId in config) {
+                    const itemConfig = config[itemId];
+                    try {
+                        const { exampleCloneItem, finalItemTplToClone } = this.createExampleCloneItem(itemConfig, itemId);
+                        if (this.instanceManager.debug) {
+                            console.log(`Processing file: ${file}, Item ID: ${itemId}`);
+                            console.log(`Prefab Path: ${exampleCloneItem.overrideProperties?.Prefab.path}`);
+                        }
+                        this.instanceManager.customItem.createItemFromClone(exampleCloneItem);
+                        this.processStaticLootContainers(itemConfig, itemId);
+                        this.processModSlots(itemConfig, finalItemTplToClone, itemId);
+                        this.processInventorySlots(itemConfig, itemId);
+                        this.processMasterySections(itemConfig, itemId);
+                        this.processWeaponPresets(itemConfig, itemId);
+                        this.processTraders(itemConfig, itemId);
+                        this.addtoHallofFame(itemConfig, itemId);
+                        this.addtoSpecialSlots(itemConfig, itemId);
+                        numItemsAdded++;
+                    }
+                    catch (itemError) {
+                        console.error(`Error processing item ID: ${itemId} in file: ${file}`);
+                        console.error(itemError);
+                    }
+                }
             }
-            this.Instance.customItem.createItemFromClone(exampleCloneItem);
-            this.processStaticLootContainers(itemConfig, itemId);
-            this.processModSlots(itemConfig, [finalItemTplToClone], itemId); // Wrap finalItemTplToClone in an array
-            this.processInventorySlots(itemConfig, itemId); // Pass itemId and inventorySlots in the correct order
-            this.processMasterySections(itemConfig, itemId);
-            this.processWeaponPresets(itemConfig, itemId);
-            this.processTraders(itemConfig, itemId);
-            this.addtoHallofFame(itemConfig, itemId);
-            this.addtoSpecialSlots(itemConfig, itemId);
-            numItemsAdded++;
+            catch (fileError) {
+                console.error(`Error processing config file: ${file}`);
+                console.error(fileError);
+            }
         }
         if (numItemsAdded > 0) {
-            if (this.Instance.debug) {
-                this.Instance.logger.log(`[${this.Instance.modName}] Database: Loaded ${numItemsAdded} custom items.`, LogTextColor_1.LogTextColor.GREEN);
-            }
+            this.instanceManager.logger.log(`[${this.instanceManager.modName}] Database: Loaded ${numItemsAdded} custom items.`, LogTextColor_1.LogTextColor.GREEN);
         }
         else {
-            if (this.Instance.debug) {
-                this.Instance.logger.log(`[${this.Instance.modName}] Database: No custom items loaded.`, LogTextColor_1.LogTextColor.GREEN);
+            this.instanceManager.logger.log(`[${this.instanceManager.modName}] Database: No custom items loaded.`, LogTextColor_1.LogTextColor.GREEN);
+        }
+        // Post-item processing (e.g., bot inventories, quest modifications)
+        for (const file of configFiles) {
+            const filePath = node_path_1.default.join(configPath, file);
+            try {
+                const fileContents = node_fs_1.default.readFileSync(filePath, "utf-8");
+                const config = JSON.parse(fileContents);
+                for (const itemId in config) {
+                    const itemConfig = config[itemId];
+                    this.processBotInventories(itemConfig, itemConfig.itemTplToClone, itemId);
+                }
+            }
+            catch (fileError) {
+                console.error(`Error processing bot inventories for file: ${file}`);
+                console.error(fileError);
             }
         }
-        for (const itemId in this.configs) {
-            const itemConfig = this.configs[itemId];
-            this.processBotInventories(itemConfig, itemConfig.itemTplToClone, itemId);
-        }
-        this.questModifier.modifyQuests(this.Instance.database, this.Instance.jsonUtil, this.Instance.debug);
     }
     /**
    * Creates an example clone item with the provided item configuration and item ID.
@@ -123,7 +116,7 @@ class CustomItemService {
             handbookParentId: finalHandbookParentId,
             locales: itemConfig.locales
         };
-        if (this.Instance.debug) {
+        if (this.instanceManager.debug) {
             console.log(`Cloning item ${finalItemTplToClone} for itemID: ${itemId}`);
         }
         return { exampleCloneItem, finalItemTplToClone };
@@ -137,47 +130,43 @@ class CustomItemService {
      * @return {void} This function does not return anything.
      */
     addToStaticLoot(containerID, itemToAdd, probability) {
-        const locations = this.Instance.database.locations;
+        const locations = this.instanceManager.database.locations;
         for (const locationID in locations) {
-            if (locations.hasOwnProperty(locationID)) {
-                const location = locations[locationID];
-                if (location.staticLoot) {
-                    const staticLoot = location.staticLoot;
-                    if (staticLoot.hasOwnProperty(containerID)) {
-                        const lootContainer = staticLoot[containerID];
-                        if (lootContainer) {
-                            const lootDistribution = lootContainer.itemDistribution;
-                            const templateFromMap = items_1.ItemMap[itemToAdd];
-                            const finalTemplate = templateFromMap || itemToAdd;
-                            const newLoot = [
-                                {
-                                    tpl: finalTemplate,
-                                    relativeProbability: probability
-                                }
-                            ];
-                            lootDistribution.push(...newLoot);
-                            lootContainer.itemDistribution = lootDistribution;
-                            if (this.Instance.debug) {
-                                console.log(`Added ${itemToAdd} to loot container: ${containerID} in location: ${locationID}`);
-                            }
-                        }
-                        else {
-                            if (this.Instance.debug) {
-                                console.log(`Error: Loot container ID ${containerID} not found in location: ${locationID}`);
-                            }
-                        }
-                    }
-                    else {
-                        if (this.Instance.debug) {
-                            console.log(`Error: Loot container ID ${containerID} not found in location: ${locationID}`);
-                        }
-                    }
+            if (!Object.prototype.hasOwnProperty.call(locations, locationID)) {
+                continue; // Skip invalid locations
+            }
+            const location = locations[locationID];
+            if (!location.staticLoot) {
+                if (this.instanceManager.debug) {
+                    console.warn(`Warning: No static loot found in location: ${locationID}`);
                 }
-                else {
-                    if (this.Instance.debug) {
-                        console.warn(`Warning: No static loot found in location: ${locationID}`);
-                    }
+                continue;
+            }
+            const staticLoot = location.staticLoot;
+            if (!Object.prototype.hasOwnProperty.call(staticLoot, containerID)) {
+                if (this.instanceManager.debug) {
+                    console.log(`Error: Loot container ID ${containerID} not found in location: ${locationID}`);
                 }
+                continue;
+            }
+            const lootContainer = staticLoot[containerID];
+            if (!lootContainer) {
+                if (this.instanceManager.debug) {
+                    console.log(`Error: Loot container ID ${containerID} is null in location: ${locationID}`);
+                }
+                continue;
+            }
+            const templateFromMap = items_1.ItemMap[itemToAdd];
+            const finalTemplate = templateFromMap || itemToAdd;
+            const newLoot = [
+                {
+                    tpl: finalTemplate,
+                    relativeProbability: probability,
+                },
+            ];
+            lootContainer.itemDistribution.push(...newLoot);
+            if (this.instanceManager.debug) {
+                console.log(`Added ${itemToAdd} to loot container: ${containerID} in location: ${locationID}`);
             }
         }
     }
@@ -190,26 +179,26 @@ class CustomItemService {
    */
     processStaticLootContainers(itemConfig, itemId) {
         if (itemConfig.addtoStaticLootContainers) {
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log("Processing static loot containers for item:", itemId);
             }
             if (Array.isArray(itemConfig.StaticLootContainers)) {
-                if (this.Instance.debug) {
+                if (this.instanceManager.debug) {
                     console.log("Adding item to multiple static loot containers:");
                 }
-                itemConfig.StaticLootContainers.forEach((container) => {
+                for (const container of itemConfig.StaticLootContainers) {
                     const staticLootContainer = items_1.ItemMap[container.ContainerName] || container.ContainerName;
                     this.addToStaticLoot(staticLootContainer, itemId, container.Probability);
-                    if (this.Instance.debug) {
+                    if (this.instanceManager.debug) {
                         console.log(` - Added to container '${staticLootContainer}' with probability ${container.Probability}`);
                     }
-                });
+                }
             }
             else {
                 const staticLootContainer = items_1.ItemMap[itemConfig.StaticLootContainers] ||
                     itemConfig.StaticLootContainers;
                 this.addToStaticLoot(staticLootContainer, itemId, itemConfig.Probability);
-                if (this.Instance.debug) {
+                if (this.instanceManager.debug) {
                     console.log(`Added to container '${staticLootContainer}' with probability ${itemConfig.Probability}`);
                 }
             }
@@ -224,7 +213,7 @@ class CustomItemService {
    * @returns {void}
    */
     processModSlots(itemConfig, finalItemTplToClone, itemId) {
-        const tables = this.Instance.database;
+        const tables = this.instanceManager.database;
         const moddableItemWhitelistIds = Array.isArray(itemConfig.ModdableItemWhitelist)
             ? itemConfig.ModdableItemWhitelist.map((shortname) => items_1.ItemMap[shortname])
             : itemConfig.ModdableItemWhitelist
@@ -242,7 +231,7 @@ class CustomItemService {
                 : [];
         const lowercaseModSlots = modSlots.map((modSlotName) => modSlotName.toLowerCase());
         if (itemConfig.addtoModSlots) {
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log("Processing mod slots for item:", itemId);
             }
             for (const parentItemId in tables.templates.items) {
@@ -261,8 +250,7 @@ class CustomItemService {
                 }
                 else if (!isBlacklisted && itemConfig.modSlot) {
                     for (const modSlot of parentItem._props.Slots) {
-                        if (modSlot._props.filters &&
-                            modSlot._props.filters[0].Filter.some((filterItem) => finalItemTplToClone.includes(filterItem))) {
+                        if (modSlot._props.filters?.[0].Filter.some((filterItem) => finalItemTplToClone.includes(filterItem))) {
                             if (lowercaseModSlots.includes(modSlot._name.toLowerCase())) {
                                 addToModSlots = true;
                                 break;
@@ -273,17 +261,9 @@ class CustomItemService {
                 if (addToModSlots) {
                     for (const modSlot of parentItem._props.Slots) {
                         if (lowercaseModSlots.includes(modSlot._name.toLowerCase())) {
-                            if (!modSlot._props.filters) {
-                                modSlot._props.filters = [
-                                    {
-                                        AnimationIndex: 0,
-                                        Filter: []
-                                    }
-                                ];
-                            }
-                            if (!modSlot._props.filters[0].Filter.includes(itemId)) {
+                            if (!modSlot._props.filters[0].Filter.includes(itemId) && modSlot._props.filters?.[0]?.Filter?.includes(finalItemTplToClone)) {
                                 modSlot._props.filters[0].Filter.push(itemId);
-                                if (this.Instance.debug) {
+                                if (this.instanceManager.debug) {
                                     console.log(`Successfully added item ${itemId} to the filter of mod slot ${modSlot._name} for parent item ${parentItemId}`);
                                 }
                             }
@@ -302,9 +282,9 @@ class CustomItemService {
    * @return {void} This function does not return a value.
    */
     processInventorySlots(itemConfig, itemId) {
-        const tables = this.Instance.database;
+        const tables = this.instanceManager.database;
         if (itemConfig.addtoInventorySlots) {
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log("Processing inventory slots for item:", itemId);
             }
             const defaultInventorySlots = tables.templates.items["55d7217a4bdc2d86028b456d"]._props.Slots;
@@ -313,14 +293,14 @@ class CustomItemService {
                 : [itemConfig.addtoInventorySlots];
             // Iterate over the slots and push the item into the filters per the config
             for (const slot of defaultInventorySlots) {
-                const slotName = configConsts_1.inventorySlots[slot._name];
-                const slotId = Object.keys(configConsts_1.inventorySlots).find((key) => configConsts_1.inventorySlots[key] === slot._name);
+                const slotName = configConsts_3.inventorySlots[slot._name];
+                const slotId = Object.keys(configConsts_3.inventorySlots).find((key) => configConsts_3.inventorySlots[key] === slot._name);
                 if (allowedSlots.includes(slot._name) ||
                     allowedSlots.includes(slotName) ||
                     allowedSlots.includes(slotId)) {
                     if (!slot._props.filters[0].Filter.includes(itemId)) {
                         slot._props.filters[0].Filter.push(itemId);
-                        if (this.Instance.debug) {
+                        if (this.instanceManager.debug) {
                             console.log(`Successfully added item ${itemId} to the filter of slot ${slot._name}`);
                         }
                     }
@@ -337,9 +317,9 @@ class CustomItemService {
    * @return {void} This function does not return a value.
    */
     processMasterySections(itemConfig, itemId) {
-        const tables = this.Instance.database;
+        const tables = this.instanceManager.database;
         if (itemConfig.masteries) {
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log("Processing mastery sections for item:", itemId);
             }
             const masterySections = Array.isArray(itemConfig.masterySections)
@@ -349,13 +329,13 @@ class CustomItemService {
                 const existingMastery = tables.globals.config.Mastering.find((existing) => existing.Name === mastery.Name);
                 if (existingMastery) {
                     existingMastery.Templates.push(...mastery.Templates);
-                    if (this.Instance.debug) {
+                    if (this.instanceManager.debug) {
                         console.log(` - Adding to existing mastery section for item: ${itemId}`);
                     }
                 }
                 else {
                     tables.globals.config.Mastering.push(mastery);
-                    if (this.Instance.debug) {
+                    if (this.instanceManager.debug) {
                         console.log(` - Adding new mastery section for item: ${itemId}`);
                     }
                 }
@@ -369,14 +349,14 @@ class CustomItemService {
    * @return {void} This function does not return anything.
    */
     processWeaponPresets(itemConfig, itemId) {
-        const tables = this.Instance.database;
+        const tables = this.instanceManager.database;
         const { addweaponpreset, weaponpresets } = itemConfig;
         const itemPresets = tables.globals.ItemPresets;
         if (addweaponpreset) {
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log("Processing weapon presets for item:", itemId);
             }
-            weaponpresets.forEach((presetData) => {
+            for (const presetData of weaponpresets) {
                 const preset = {
                     _changeWeaponName: presetData._changeWeaponName,
                     _encyclopedia: presetData._encyclopedia || undefined,
@@ -400,11 +380,11 @@ class CustomItemService {
                     _type: "Preset"
                 };
                 itemPresets[preset._id] = preset;
-                if (this.Instance.debug) {
+                if (this.instanceManager.debug) {
                     console.log(` - Added weapon preset: ${preset._name}`);
                     console.log(` - Preset: ${JSON.stringify(preset)}`);
                 }
-            });
+            }
         }
     }
     /**
@@ -415,7 +395,7 @@ class CustomItemService {
    * @return {void} This function does not return a value.
    */
     processTraders(itemConfig, itemId) {
-        const tables = this.Instance.database;
+        const tables = this.instanceManager.database;
         if (!itemConfig.addtoTraders) {
             return;
         }
@@ -427,7 +407,7 @@ class CustomItemService {
             return;
         }
         for (const item of traderItems) {
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log("Processing traders for item:", itemId);
             }
             const newItem = {
@@ -441,17 +421,17 @@ class CustomItemService {
                 }
             };
             trader.assort.items.push(newItem);
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log(`Successfully added item ${itemId} to the trader ${traderId}`);
             }
         }
         trader.assort.barter_scheme[itemId] = [];
         for (const scheme of barterScheme) {
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log("Processing trader barter scheme for item:", itemId);
             }
             const count = scheme.count;
-            const tpl = configConsts_1.currencyIDs[scheme._tpl] || items_1.ItemMap[scheme._tpl];
+            const tpl = configConsts_2.currencyIDs[scheme._tpl] || items_1.ItemMap[scheme._tpl];
             if (!tpl) {
                 throw new Error(`Invalid _tpl value in barterScheme for item: ${itemId}`);
             }
@@ -461,35 +441,35 @@ class CustomItemService {
                     _tpl: tpl
                 }
             ]);
-            if (this.Instance.debug) {
+            if (this.instanceManager.debug) {
                 console.log(`Successfully added item ${itemId} to the barter scheme of trader ${traderId}`);
             }
         }
         trader.assort.loyal_level_items[itemId] = itemConfig.loyallevelitems;
     }
     addtoHallofFame(itemConfig, itemId) {
-        const hallofFame1 = this.Instance.database.templates.items["63dbd45917fff4dee40fe16e"];
-        const hallofFame2 = this.Instance.database.templates.items["65424185a57eea37ed6562e9"];
-        const hallofFame3 = this.Instance.database.templates.items["6542435ea57eea37ed6562f0"];
+        const hallofFame1 = this.instanceManager.database.templates.items["63dbd45917fff4dee40fe16e"];
+        const hallofFame2 = this.instanceManager.database.templates.items["65424185a57eea37ed6562e9"];
+        const hallofFame3 = this.instanceManager.database.templates.items["6542435ea57eea37ed6562f0"];
         // Add to Hall of Fame filters
         if (itemConfig.addtoHallOfFame) {
             const hallOfFames = [hallofFame1, hallofFame2, hallofFame3];
-            hallOfFames.forEach((hall) => {
+            for (const hall of hallOfFames) {
                 for (const slot of hall._props.Slots) {
                     for (const filter of slot._props.filters) {
                         if (!filter.Filter.includes(itemId)) {
                             filter.Filter.push(itemId);
-                            if (this.Instance.debug) {
+                            if (this.instanceManager.debug) {
                                 console.log(`Added item ${itemId} to filter Hall of Fame ${hall._name}`);
                             }
                         }
                     }
                 }
-            });
+            }
         }
     }
     addtoSpecialSlots(itemConfig, itemId) {
-        const tables = this.Instance.database;
+        const tables = this.instanceManager.database;
         if (itemConfig.addtoSpecialSlots) {
             const pockets = tables.templates.items["627a4e6b255f7527fb05a0f6"];
             for (const slot of pockets._props.Slots) {
@@ -508,10 +488,10 @@ class CustomItemService {
      * @return {void} This function does not return anything.
      */
     processBotInventories(itemConfig, finalItemTplToClone, itemId) {
-        const tables = this.Instance.database;
+        const tables = this.instanceManager.database;
         if (!itemConfig.addtoBots)
             return;
-        if (this.Instance.debug) {
+        if (this.instanceManager.debug) {
             console.log("Processing bot inventories for item:", itemId);
         }
         // Iterate through bot types
@@ -538,23 +518,23 @@ class CustomItemService {
      * @param {string} typeLabel - Label indicating items or equipment.
      * @return {void} This function does not return anything.
      */
-    processInventoryType(inventoryType, finalTplToClone, itemId, botType, typeLabel) {
-        const tables = this.Instance.database;
-        if (typeLabel === "equipment" && ((inventoryType.FirstPrimaryWeapon && inventoryType.FirstPrimaryWeapon[finalTplToClone]) ||
-            (inventoryType.SecondPrimaryWeapon && inventoryType.SecondPrimaryWeapon[finalTplToClone]) ||
-            (inventoryType.Holster && inventoryType.Holster[finalTplToClone]))) {
+    processInventoryType(
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    inventoryType, finalTplToClone, itemId, botType, typeLabel) {
+        const tables = this.instanceManager.database;
+        if (typeLabel === "equipment" && ((inventoryType.FirstPrimaryWeapon?.[finalTplToClone]) ||
+            (inventoryType.SecondPrimaryWeapon?.[finalTplToClone]) ||
+            (inventoryType.Holster?.[finalTplToClone]))) {
             if (!this.ensureValidWeaponPreset(itemId)) {
                 return;
             }
-            else {
-                this.processAmmoAndChambers(tables.bots.types[botType].inventory, tables.templates.items[itemId]._props, itemId, botType);
-            }
+            this.processAmmoAndChambers(tables.bots.types[botType].inventory, tables.templates.items[itemId]._props, itemId, botType);
         }
         for (const lootSlot in inventoryType) {
             const items = inventoryType[lootSlot];
             if (items && items[finalTplToClone] !== undefined) {
                 const weight = items[finalTplToClone];
-                if (this.Instance.debug) {
+                if (this.instanceManager.debug) {
                     console.log(` - Adding item to bot ${typeLabel} for bot type: ${botType} in loot slot: ${lootSlot} with weight: ${weight}`);
                 }
                 items[itemId] = weight;
@@ -572,7 +552,7 @@ class CustomItemService {
      */
     addModsToItem(tables, itemId, botType) {
         const itemProps = tables.templates.items[itemId]._props;
-        if (itemProps && itemProps.Slots) {
+        if (itemProps?.Slots) {
             for (const slot of itemProps.Slots) {
                 const slotName = slot._name;
                 const filters = slot._props.filters;
@@ -590,7 +570,7 @@ class CustomItemService {
                                         }
                                     }
                                 }
-                                if (this.Instance.debug) {
+                                if (this.instanceManager.debug) {
                                     console.log(` - Added mod ${modId} to ${itemId}'s ${slotName} of bot type ${botType}`);
                                 }
                             }
@@ -611,17 +591,17 @@ class CustomItemService {
      * @return {void} This function does not return anything.
      */
     processBotModSlots(finalItemTplToClone, itemId, botType, modSlots) {
-        const mods = this.Instance.database.bots.types[botType].inventory.mods;
+        const mods = this.instanceManager.database.bots.types[botType].inventory.mods;
         for (const item in mods) {
             const itemMods = mods[item];
             for (const modSlot of modSlots) {
-                if (itemMods[modSlot] && itemMods[modSlot].includes(finalItemTplToClone)) {
+                if (itemMods[modSlot]?.includes(finalItemTplToClone)) {
                     itemMods[modSlot].push(itemId);
-                    if (this.Instance.debug) {
+                    if (this.instanceManager.debug) {
                         console.log(` - Added item ${itemId} to mod slot ${modSlot} for bot type ${botType} in item ${item}`);
                     }
                     // Adding nested mods for the new item
-                    this.addModsToItem(this.Instance.database, itemId, botType);
+                    this.addModsToItem(this.instanceManager.database, itemId, botType);
                 }
             }
         }
@@ -640,7 +620,7 @@ class CustomItemService {
         if (!ammoCaliber)
             return;
         botInventory.Ammo[ammoCaliber] = botInventory.Ammo[ammoCaliber] || {};
-        if (this.Instance.debug) {
+        if (this.instanceManager.debug) {
             console.log(` - Added new caliber ${ammoCaliber} to bot inventory for bot type ${botType}`);
         }
         if (itemProps.Chambers) {
@@ -650,7 +630,7 @@ class CustomItemService {
                     for (const filter of filters) {
                         for (const filterItem of filter.Filter) {
                             botInventory.Ammo[ammoCaliber][filterItem] = botInventory.Ammo[ammoCaliber][filterItem] || 0;
-                            if (this.Instance.debug) {
+                            if (this.instanceManager.debug) {
                                 console.log(` - Added filter item ${filterItem} to caliber ${ammoCaliber} in bot inventory for bot type ${botType}`);
                             }
                         }
@@ -666,38 +646,20 @@ class CustomItemService {
      * @return {boolean} True if the weapon has a valid preset, false otherwise.
      */
     ensureValidWeaponPreset(itemId) {
-        const db = this.Instance.database;
+        const db = this.instanceManager.database;
         const presets = db.globals.ItemPresets;
         for (const presetObj of Object.values(presets)) {
             if (presetObj._items[0]._tpl === itemId) {
-                if (this.Instance.debug) {
+                if (this.instanceManager.debug) {
                     console.log(` - Valid preset found for item ${itemId}`);
                 }
                 return true;
             }
         }
-        if (this.Instance.debug) {
+        if (this.instanceManager.debug) {
             console.warn(`No valid preset found for item ${itemId} in globals.ItemPresets`);
         }
         return false;
-    }
-    /**
-   * Loads and combines multiple configuration files into a single ConfigItem object.
-   *
-   * @return {any} The combined configuration object.
-   */
-    loadCombinedConfig() {
-        const configFiles = fs
-            .readdirSync(path.join(__dirname, "../db/Items"))
-            .filter((file) => !file.includes("BaseItemReplacement"));
-        const combinedConfig = {};
-        configFiles.forEach((file) => {
-            const configPath = path.join(__dirname, "../db/Items", file);
-            const configFileContents = fs.readFileSync(configPath, "utf-8");
-            const config = JSON.parse(configFileContents);
-            Object.assign(combinedConfig, config);
-        });
-        return combinedConfig;
     }
 }
 exports.CustomItemService = CustomItemService;

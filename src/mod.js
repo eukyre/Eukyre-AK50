@@ -11,18 +11,16 @@ const LogTextColor_1 = require("C:/snapshot/project/obj/models/spt/logging/LogTe
 const WTTInstanceManager_1 = require("./WTTInstanceManager");
 const CustomItemService_1 = require("./CustomItemService");
 const EpicsEdits_1 = require("./EpicsEdits");
-const TraderBadger_1 = require("./Traders/TraderBadger");
 // Custom Trader Assort Items
 const CustomAssortSchemeService_1 = require("./CustomAssortSchemeService");
 const CustomWeaponPresets_1 = require("./CustomWeaponPresets");
-class TESTBED {
+class Eukyre_AK50 {
     Instance = new WTTInstanceManager_1.WTTInstanceManager();
     version;
-    modName = "Eukyre's AK-50";
+    modName = "Eukyre's AK50";
     config;
     customItemService = new CustomItemService_1.CustomItemService();
     epicItemClass = new EpicsEdits_1.epicItemClass();
-    traderBadger = new TraderBadger_1.TraderBadger();
     customAssortSchemeService = new CustomAssortSchemeService_1.CustomAssortSchemeService();
     customWeaponPresets = new CustomWeaponPresets_1.CustomWeaponPresets();
     debug = false;
@@ -36,7 +34,6 @@ class TESTBED {
         this.displayCreditBanner();
         this.customItemService.preSptLoad(this.Instance);
         this.epicItemClass.preSptLoad(this.Instance);
-        this.traderBadger.preSptLoad(this.Instance);
         this.customAssortSchemeService.preSptLoad(this.Instance);
         this.customWeaponPresets.preSptLoad(this.Instance);
     }
@@ -46,7 +43,6 @@ class TESTBED {
         this.Instance.postDBLoad(container);
         // EVERYTHING AFTER HERE MUST USE THE INSTANCE
         this.epicItemClass.postDBLoad();
-        await this.traderBadger.postDBLoad();
         this.customItemService.postDBLoad();
         this.customAssortSchemeService.postDBLoad();
         this.customWeaponPresets.postDBLoad();
@@ -86,8 +82,8 @@ class TESTBED {
         console.log(`${colorCode}${message}${resetCode}`); // Log the colored message here
     }
     displayCreditBanner() {
-        this.colorLog(`[${this.modName}] Developers: probablyEukyre - Code Framework: GroovypenguinX - "AK-50 in 3.. 2.. 1..."`, "brightMagenta");
+        this.colorLog(`[${this.modName}] Developers:  probablyEukyre   Code Framework: GroovypenguinX - hehe ak fiddy.`, "brightMagenta");
     }
 }
-module.exports = { mod: new TESTBED() };
+module.exports = { mod: new Eukyre_AK50() };
 //# sourceMappingURL=mod.js.map
