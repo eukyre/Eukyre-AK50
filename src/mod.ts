@@ -117,7 +117,7 @@ implements IPreSptLoadMod, IPostDBLoadMod
     private displayCreditBanner(): void 
     {
         this.colorLog
-        (`[${this.modName}] Developers: probablyEukyre - Code Framework: GroovypenguinX`, "green");
+        (`[${this.modName}] Developers: probablyEukyre - Code Framework: GroovypenguinX - "AK-50 in 3.. 2.. 1..."`, "brightMagenta");
     }
 }
 

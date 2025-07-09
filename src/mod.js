@@ -86,7 +86,7 @@ class TESTBED {
         console.log(`${colorCode}${message}${resetCode}`); // Log the colored message here
     }
     displayCreditBanner() {
-        this.colorLog(`[${this.modName}] Developers: probablyEukyre - Code Framework: GroovypenguinX`, "green");
+        this.colorLog(`[${this.modName}] Developers: probablyEukyre - Code Framework: GroovypenguinX - "AK-50 in 3.. 2.. 1..."`, "brightMagenta");
     }
 }
 module.exports = { mod: new TESTBED() };
