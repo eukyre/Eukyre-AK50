@@ -157,8 +157,8 @@
 		"modSlot": [],
 		"ModdableItemWhitelist": [],
 		"ModdableItemBlacklist": [],
-		"fleaPriceRoubles": 29572,
-		"handbookPriceRoubles": 75832,
+		"fleaPriceRoubles": 1800000,
+		"handbookPriceRoubles": 180000,
 		"addtoTraders": false,
 		"traderId": "PEACEKEEPER",
 		"traderItems": [
@@ -407,7 +407,7 @@
         "ModdableItemWhitelist": [],
         "ModdableItemBlacklist": [],
         "fleaPriceRoubles": 20353,
-        "handbookPriceRoubles": 1465,
+        "handbookPriceRoubles": 3576,
         "addtoTraders": false,
         "traderId": "PEACEKEEPER",
         "traderItems": [
@@ -513,7 +513,7 @@
         "ModdableItemWhitelist": [],
         "ModdableItemBlacklist": [],
         "fleaPriceRoubles": 67572,
-        "handbookPriceRoubles": 1465,
+        "handbookPriceRoubles": 8378,
         "addtoTraders": false,
         "traderId": "PEACEKEEPER",
         "traderItems": [
@@ -578,7 +578,7 @@
         "ModdableItemWhitelist": [],
         "ModdableItemBlacklist": [],
         "fleaPriceRoubles": 20353,
-        "handbookPriceRoubles": 1465,
+        "handbookPriceRoubles": 6666,
         "addtoTraders": false,
         "traderId": "PEACEKEEPER",
         "traderItems": [
@@ -778,7 +778,7 @@
         "ModdableItemWhitelist": [],
         "ModdableItemBlacklist": [],
         "fleaPriceRoubles": 20353,
-        "handbookPriceRoubles": 1465,
+        "handbookPriceRoubles": 2222,
         "addtoTraders": false,
         "traderId": "PEACEKEEPER",
         "traderItems": [
