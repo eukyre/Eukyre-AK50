@@ -195,68 +195,8 @@
 				]
 			}
 		],
-		"addweaponpreset": true,
-		"weaponpresets": [
-            {
-                "_changeWeaponName": false,
-                "_encyclopedia": "686e9cc971fdf3a50ea5b9f3",
-                "_id": "686eb4bd95a86d9200b09426",
-                "_items": [
-                    {
-                        "_id": "686eb4b464543ed05a412202",
-                        "_tpl": "686e9cc971fdf3a50ea5b9f3",
-                        "upd": {
-                            "Repairable": {
-                                "MaxDurability": 100,
-                                "Durability": 100
-                            },
-                            "FireMode": {
-                                "FireMode": "single"
-                            }
-                        }
-                    },
-                    {
-                        "_id": "686eb4bf8529376bc453a0e0",
-                        "_tpl": "686ea301341c74a9d8f5dfde",
-                        "slotId": "mod_reciever",
-                        "parentId": "686eb4b464543ed05a412202"
-                    },
-                    {
-                        "_id": "686eb4c07d96814b7f8db4be",
-                        "_tpl": "686e96247283228774e7875e",
-                        "slotId": "mod_magazine",
-                        "parentId": "686eb4b464543ed05a412202"
-                    },
-                    {
-                        "_id": "686ece381c22392d9e1d363f",
-                        "_tpl": "5649ade84bdc2d1b2b8b4587",
-                        "slotId": "mod_pistol_grip",
-                        "parentId": "686eb4b464543ed05a412202"
-                    },
-                    {
-                        "_id": "686eb4c3215cd409e2aa0071",
-                        "_tpl": "686e9f47c82265f70c65a0bc",
-                        "slotId": "mod_barrel",
-                        "parentId": "686eb4b464543ed05a412202"
-                    },
-                    {
-                        "_id": "686eb4c7098e5a6050c91f73",
-                        "_tpl": "686ea09e22b105b8adc86579",
-                        "slotId": "mod_muzzle",
-                        "parentId": "686eb4c3215cd409e2aa0071"
-                    },
-                    {
-                        "_id": "686eb4c64b09843317bf5b94",
-                        "_tpl": "686ea1787aaea0639d6587b4",
-                        "slotId": "mod_gas_block",
-                        "parentId": "686eb4c3215cd409e2aa0071"
-                    }
-                ],
-                "_name": "AK50 Stock Preset",
-                "_parent": "686eb4b464543ed05a412202",
-                "_type": "Preset"
-            }
-        ]
+		"addweaponpreset": false,
+		"weaponpresets": []
 	},
     "686ea1787aaea0639d6587b4": {
         "itemTplToClone": "56eabcd4d2720b66698b4574",
