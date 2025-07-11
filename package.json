@@ -6,6 +6,12 @@
     "author": "ProbablyEukyre",
     "isBundleMod": true,
     "sptVersion": "~3.11.x",
+    "loadAfter": [],
+    "loadBefore": [
+        "EpicRangeTime-Weapons",
+        "Echoes-of-Tarkov---Requisitions",
+        "Eukyre-Consortium"
+    ],
     "incompatibilities":[],
     "scripts": {
         "setup": "npm i",
