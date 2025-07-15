@@ -1,13 +1,13 @@
 {
     "686e9cc971fdf3a50ea5b9f3": {
-		"itemTplToClone": "5c46fbd72e2216398b5a8c9c",
-		"parentId": "5447b6194bdc2d67278b4567",
-		"handbookParentId": "5b5f791486f774093f2ed3be",
-		"overrideProperties": {
-			"Prefab": {
-				"path": "assets/content/weapons/ak50/weapon_theakguy_ak50_127x99_container.bundle",
-				"rcid": ""
-			},
+        "itemTplToClone": "5c46fbd72e2216398b5a8c9c",
+        "parentId": "5447b6194bdc2d67278b4567",
+        "handbookParentId": "5b5f791486f774093f2ed3be",
+        "overrideProperties": {
+            "Prefab": {
+                "path": "assets/content/weapons/ak50/weapon_theakguy_ak50_127x99_container.bundle",
+                "rcid": ""
+            },
             "Weight": 7.963,
             "RecoilForceBack": 1163,
             "RecoilForceUp": 624,
@@ -23,51 +23,51 @@
             "Foldable": false,
             "CanSellOnRagfair": false,
             "CompactHandling": false,
-			"Slots": [
-				{
-					"_name": "mod_reciever",
-					"_id": "68580ea73f92c88e12d1b846",
-					"_parent": "686e9cc971fdf3a50ea5b9f3",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
-									"686ea301341c74a9d8f5dfde"
-								]
-							}
-						]
-					},
-					"_required": true,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
-				{
-					"_name": "mod_magazine",
-					"_id": "68580ea979f701d346afe66e",
-					"_parent": "686e9cc971fdf3a50ea5b9f3",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
+            "Slots": [
+                {
+                    "_name": "mod_reciever",
+                    "_id": "68580ea73f92c88e12d1b846",
+                    "_parent": "686e9cc971fdf3a50ea5b9f3",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
+                                    "686ea301341c74a9d8f5dfde"
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": true,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
+                {
+                    "_name": "mod_magazine",
+                    "_id": "68580ea979f701d346afe66e",
+                    "_parent": "686e9cc971fdf3a50ea5b9f3",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
                                     "686e96247283228774e7875e"
-								]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
-				{
-					"_name": "mod_pistol_grip",
-					"_id": "68580eaa88f3671b6b8bbd00",
-					"_parent": "686e9cc971fdf3a50ea5b9f3",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
+                {
+                    "_name": "mod_pistol_grip",
+                    "_id": "68580eaa88f3671b6b8bbd00",
+                    "_parent": "686e9cc971fdf3a50ea5b9f3",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
                                 "Filter": [
                                     "5f6341043ada5942720e2dc5",
                                     "6087e663132d4d12c81fd96b",
@@ -95,109 +95,169 @@
                                     "648ae3e356c6310a830fc291",
                                     "651580dc71a4f10aec4b6056"
                                 ]
-							}
-						]
-					},
-					"_required": true,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
-				{
-					"_name": "mod_barrel",
-					"_id": "68580eac9766900bdfc622cf",
-					"_parent": "686e9cc971fdf3a50ea5b9f3",
-					"_props": {
-						"filters": [
-							{
-								"Filter": [
-									"686e9f47c82265f70c65a0bc"
-								]
-							}
-						]
-					},
-					"_required": true,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c394bdc2dae468b4577"
-				}
-			],
-			"ammoCaliber": "Caliber127x99",
-			"Chambers": [
-				{
-					"_name": "patron_in_weapon",
-					"_id": "fa96f39be80152b330a7455a",
-					"_parent": "686e9cc971fdf3a50ea5b9f3",
-					"_props": {
-						"filters": [
-							{
-								"Filter": [
-                                    "686e90abd63bee9a05dcf5db",
-									"686e926498b323bfbbe1fc7c",
-									"686e93d861bcbeca0b805201",
-									"686e959752397d5b3485ad75"
+                            }
+                        ]
+                    },
+                    "_required": true,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
+                {
+                    "_name": "mod_barrel",
+                    "_id": "68580eac9766900bdfc622cf",
+                    "_parent": "686e9cc971fdf3a50ea5b9f3",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Filter": [
+                                    "686e9f47c82265f70c65a0bc"
                                 ]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d4af244bdc2d962f8b4571"
-				}
-			]
-		},
-		"locales": {
-			"en": {
-				"name": "TheAKGuy AK-50 .50 BMG sniper rifle",
-				"shortName": "AK-50",
-				"description": "The AK-50 semi-automatic anti-materiel rifle is an experimental first-of-a-kind project that adapts the Kalashnikov platform to use the .50 BMG cartridge. The AK-50 has outstanding penetration and range, making it a very powerful sniper rifle. This prototype was developed by a firearms manufacturer and YouTube blogger Brandon Herrera and co. as part of The AK Guy LTD."
-			}
-		},
-		"clearClonedProps": false,
-		"addtoInventorySlots": [],
-		"addtoModSlots": false,
-		"modSlot": [],
-		"ModdableItemWhitelist": [],
-		"ModdableItemBlacklist": [],
-		"fleaPriceRoubles": 1800000,
-		"handbookPriceRoubles": 180000,
-		"addtoTraders": false,
-		"traderId": "PEACEKEEPER",
-		"traderItems": [
-			{
-				"unlimitedCount": true,
-				"stackObjectsCount": 99
-			}
-		],
-		"barterScheme": [
-			{
-				"count": 19028,
-				"_tpl": "ROUBLES"
-			}
-		],
-		"loyallevelitems": 4,
-		"addtoBots": false,
-		"addtostaticlootcontainer": false,
-		"StaticLootContainers": [
-			{
-				"ContainerName": "LOOTCONTAINER_WEAPON_BOX_4X4",
-				"Probability": 250
-			},
-			{
-				"ContainerName": "LOOTCONTAINER_DEAD_SCAV",
-				"Probability": 150
-			}
-		],
-		"masteries": true,
-		"masterySections": [
-			{
-				"Name": "Mk18",
-				"Templates": [
-					"686e9cc971fdf3a50ea5b9f3"
-				]
-			}
-		],
-		"addweaponpreset": false,
-		"weaponpresets": []
-	},
+                            }
+                        ]
+                    },
+                    "_required": true,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c394bdc2dae468b4577"
+                }
+            ],
+            "ammoCaliber": "Caliber127x99",
+            "Chambers": [
+                {
+                    "_name": "patron_in_weapon",
+                    "_id": "fa96f39be80152b330a7455a",
+                    "_parent": "686e9cc971fdf3a50ea5b9f3",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Filter": [
+                                    "686e90abd63bee9a05dcf5db",
+                                    "686e926498b323bfbbe1fc7c",
+                                    "686e93d861bcbeca0b805201",
+                                    "686e959752397d5b3485ad75"
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d4af244bdc2d962f8b4571"
+                }
+            ]
+        },
+        "locales": {
+            "en": {
+                "name": "TheAKGuy AK-50 .50 BMG sniper rifle",
+                "shortName": "AK-50",
+                "description": "The AK-50 semi-automatic anti-materiel rifle is an experimental first-of-a-kind project that adapts the Kalashnikov platform to use the .50 BMG cartridge. The AK-50 has outstanding penetration and range, making it a very powerful sniper rifle. This prototype was developed by a firearms manufacturer and YouTube blogger Brandon Herrera and co. as part of The AK Guy LTD."
+            }
+        },
+        "clearClonedProps": false,
+        "addtoInventorySlots": [],
+        "addtoModSlots": false,
+        "modSlot": [],
+        "ModdableItemWhitelist": [],
+        "ModdableItemBlacklist": [],
+        "fleaPriceRoubles": 1800000,
+        "handbookPriceRoubles": 180000,
+        "addtoTraders": false,
+        "traderId": "PEACEKEEPER",
+        "traderItems": [
+            {
+                "unlimitedCount": true,
+                "stackObjectsCount": 99
+            }
+        ],
+        "barterScheme": [
+            {
+                "count": 19028,
+                "_tpl": "ROUBLES"
+            }
+        ],
+        "loyallevelitems": 4,
+        "addtoBots": false,
+        "addtostaticlootcontainer": false,
+        "StaticLootContainers": [
+            {
+                "ContainerName": "LOOTCONTAINER_WEAPON_BOX_4X4",
+                "Probability": 250
+            },
+            {
+                "ContainerName": "LOOTCONTAINER_DEAD_SCAV",
+                "Probability": 150
+            }
+        ],
+        "masteries": true,
+        "masterySections": [
+            {
+                "Name": "Mk18",
+                "Templates": [
+                    "686e9cc971fdf3a50ea5b9f3"
+                ]
+            }
+        ],
+        "addweaponpreset": true,
+        "weaponpresets": [
+            {
+                "_id": "6876720a2e6e193e5511a504",
+                "_changeWeaponName": false,
+                "_encyclopedia": "686e9cc971fdf3a50ea5b9f3",
+                "_items": [
+                    {
+                        "_id": "68767252535e57c00072e257",
+                        "_tpl": "686e9cc971fdf3a50ea5b9f3",
+                        "upd": {
+                            "Repairable": {
+                                "MaxDurability": 100,
+                                "Durability": 100
+                            },
+                            "FireMode": {
+                                "FireMode": "single"
+                            }
+                        }
+                    },
+                    {
+                        "_id": "6876726257a0b2f2152f1d71",
+                        "_tpl": "686ea301341c74a9d8f5dfde",
+                        "slotId": "mod_reciever",
+                        "parentId": "68767252535e57c00072e257"
+                    },
+                    {
+                        "_id": "687672643f5b04c2f119f319",
+                        "_tpl": "686e96247283228774e7875e",
+                        "slotId": "mod_magazine",
+                        "parentId": "68767252535e57c00072e257"
+                    },
+                    {
+                        "_id": "687672658f63f352320e7885",
+                        "_tpl": "5649ade84bdc2d1b2b8b4587",
+                        "slotId": "mod_pistol_grip",
+                        "parentId": "68767252535e57c00072e257"
+                    },
+                    {
+                        "_id": "68767267daba56bc68eba797",
+                        "_tpl": "686e9f47c82265f70c65a0bc",
+                        "slotId": "mod_barrel",
+                        "parentId": "68767252535e57c00072e257"
+                    },
+                    {
+                        "_id": "6876726d903ed529aad3b872",
+                        "_tpl": "686ea09e22b105b8adc86579",
+                        "slotId": "mod_muzzle",
+                        "parentId": "68767267daba56bc68eba797"
+                    },
+                    {
+                        "_id": "6876726c3771d06996ee3266",
+                        "_tpl": "686ea1787aaea0639d6587b4",
+                        "slotId": "mod_gas_block",
+                        "parentId": "68767267daba56bc68eba797"
+                    }
+                ],
+                "_name": "P320 base",
+                "_parent": "68767252535e57c00072e257",
+                "_type": "Preset"
+            }
+        ]
+    },
     "686ea1787aaea0639d6587b4": {
         "itemTplToClone": "56eabcd4d2720b66698b4574",
         "parentId": "56ea9461d2720b67698b456f",
@@ -214,15 +274,15 @@
             "Ergonomics": 2,
             "Recoil": -3,
             "Slots": [
-				{
-					"_name": "mod_tactical",
-					"_id": "686ea17bfaa139a6203d722e",
-					"_parent": "686ea1787aaea0639d6587b4",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
+                {
+                    "_name": "mod_tactical",
+                    "_id": "686ea17bfaa139a6203d722e",
+                    "_parent": "686ea1787aaea0639d6587b4",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
                                     "57fd23e32459772d0805bcf1",
                                     "544909bb4bdc2d6f028b4577",
                                     "5d10b49bd7ad1a1a560708b0",
@@ -232,84 +292,84 @@
                                     "5c5952732e2216398b5abda2",
                                     "644a3df63b0b6f03e101e065"
                                 ]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
                 {
-					"_name": "mod_mount_000",
-					"_id": "686ea17bfaa139a6203d722e",
-					"_parent": "686ea1787aaea0639d6587b4",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
+                    "_name": "mod_mount_000",
+                    "_id": "686ea17bfaa139a6203d722e",
+                    "_parent": "686ea1787aaea0639d6587b4",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
                                 "Filter": [
                                     "5b7be47f5acfc400170e2dd2",
                                     "6269220d70b6c02e665f2635",
                                     "6269545d0e57f218e4548ca2",
                                     "669a6a4a525be1d2d004b8eb",
                                     "671126b049e181972e0681fa"
-								]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
                 {
-					"_name": "mod_mount_001",
-					"_id": "686ea17bfaa139a6203d722e",
-					"_parent": "686ea1787aaea0639d6587b4",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
-									"5b7be47f5acfc400170e2dd2",
+                    "_name": "mod_mount_001",
+                    "_id": "686ea17bfaa139a6203d722e",
+                    "_parent": "686ea1787aaea0639d6587b4",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
+                                    "5b7be47f5acfc400170e2dd2",
                                     "6269220d70b6c02e665f2635",
                                     "6269545d0e57f218e4548ca2",
                                     "669a6a4a525be1d2d004b8eb"
-								]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
                 {
-					"_name": "mod_mount_002",
-					"_id": "686ea17bfaa139a6203d722e",
-					"_parent": "686ea1787aaea0639d6587b4",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
-									"5b7be47f5acfc400170e2dd2",
+                    "_name": "mod_mount_002",
+                    "_id": "686ea17bfaa139a6203d722e",
+                    "_parent": "686ea1787aaea0639d6587b4",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
+                                    "5b7be47f5acfc400170e2dd2",
                                     "6269220d70b6c02e665f2635",
                                     "6269545d0e57f218e4548ca2",
                                     "669a6a4a525be1d2d004b8eb"
-								]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
                 {
-					"_name": "mod_sight_front",
-					"_id": "686ea17bfaa139a6203d722e",
-					"_parent": "686ea1787aaea0639d6587b4",
-					"_props": {
-						"filters": [
-							{
+                    "_name": "mod_sight_front",
+                    "_id": "686ea17bfaa139a6203d722e",
+                    "_parent": "686ea1787aaea0639d6587b4",
+                    "_props": {
+                        "filters": [
+                            {
                                 "Shift": 0,
                                 "Filter": [
                                     "5ba26b01d4351e0085325a51",
@@ -321,14 +381,14 @@
                                     "5fc0fa362770a0045c59c677",
                                     "5894a73486f77426d259076c",
                                     "55d4af3a4bdc2d972f8b456f"
-								]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				}
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                }
             ]
         },
         "locales": {
@@ -376,7 +436,7 @@
             }
         ],
         "masteries": false,
-        "masterySections": [ ],
+        "masterySections": [],
         "addweaponpreset": false,
         "weaponpresets": []
     },
@@ -399,42 +459,42 @@
             "Ergonomics": -12,
             "Recoil": -6,
             "Slots": [
-				{
-					"_name": "mod_muzzle",
-					"_id": "686ea0661bd4585592ec498e",
-					"_parent": "686e9f47c82265f70c65a0bc",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
-									"686ea09e22b105b8adc86579"
-								]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
                 {
-					"_name": "mod_gas_block",
-					"_id": "686ea1920ed84a4c65a18558",
-					"_parent": "686e9f47c82265f70c65a0bc",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
-									"686ea1787aaea0639d6587b4"
-								]
-							}
-						]
-					},
-					"_required": true,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				}
+                    "_name": "mod_muzzle",
+                    "_id": "686ea0661bd4585592ec498e",
+                    "_parent": "686e9f47c82265f70c65a0bc",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
+                                    "686ea09e22b105b8adc86579"
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
+                {
+                    "_name": "mod_gas_block",
+                    "_id": "686ea1920ed84a4c65a18558",
+                    "_parent": "686e9f47c82265f70c65a0bc",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
+                                    "686ea1787aaea0639d6587b4"
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": true,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                }
             ]
         },
         "locales": {
@@ -482,7 +542,7 @@
             }
         ],
         "masteries": false,
-        "masterySections": [ ],
+        "masterySections": [],
         "addweaponpreset": false,
         "weaponpresets": []
     },
@@ -547,7 +607,7 @@
             }
         ],
         "masteries": false,
-        "masterySections": [ ],
+        "masterySections": [],
         "addweaponpreset": false,
         "weaponpresets": []
     },
@@ -567,15 +627,15 @@
             "Ergonomics": 2,
             "Recoil": -3,
             "Slots": [
-				{
-					"_name": "mod_scope",
-					"_id": "686ea4066733142e56386dd2",
-					"_parent": "686ea301341c74a9d8f5dfde",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
+                {
+                    "_name": "mod_scope",
+                    "_id": "686ea4066733142e56386dd2",
+                    "_parent": "686ea301341c74a9d8f5dfde",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
                                     "57ac965c24597706be5f975c",
                                     "57aca93d2459771f2c7e26db",
                                     "544a3f024bdc2d1d388b4568",
@@ -647,21 +707,21 @@
                                     "67641a851b2899700609901a",
                                     "6761759e7ee06333f108bf86"
                                 ]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
                 {
-					"_name": "mod_sight_rear",
-					"_id": "686ea4396a38261648349d6d",
-					"_parent": "686ea301341c74a9d8f5dfde",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
+                    "_name": "mod_sight_rear",
+                    "_id": "686ea4396a38261648349d6d",
+                    "_parent": "686ea301341c74a9d8f5dfde",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
                                 "Filter": [
                                     "5bb20e49d4351e3bac1212de",
                                     "5ba26b17d4351e00367f9bdd",
@@ -674,32 +734,32 @@
                                     "5894a81786f77427140b8347",
                                     "55d5f46a4bdc2d1b198b4567",
                                     "5ae30bad5acfc400185c2dc4"
-								]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				},
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                },
                 {
-					"_name": "mod_mount",
-					"_id": "686ea43b6f8794ab5fbc50d3",
-					"_parent": "686ea301341c74a9d8f5dfde",
-					"_props": {
-						"filters": [
-							{
-								"Shift": 0,
-								"Filter": [
-									"5649a2464bdc2d91118b45a8"
-								]
-							}
-						]
-					},
-					"_required": false,
-					"_mergeSlotWithChildren": false,
-					"_proto": "55d30c4c4bdc2db4468b457e"
-				}
+                    "_name": "mod_mount",
+                    "_id": "686ea43b6f8794ab5fbc50d3",
+                    "_parent": "686ea301341c74a9d8f5dfde",
+                    "_props": {
+                        "filters": [
+                            {
+                                "Shift": 0,
+                                "Filter": [
+                                    "5649a2464bdc2d91118b45a8"
+                                ]
+                            }
+                        ]
+                    },
+                    "_required": false,
+                    "_mergeSlotWithChildren": false,
+                    "_proto": "55d30c4c4bdc2db4468b457e"
+                }
             ]
         },
         "locales": {
@@ -747,7 +807,7 @@
             }
         ],
         "masteries": false,
-        "masterySections": [ ],
+        "masterySections": [],
         "addweaponpreset": false,
         "weaponpresets": []
     }
